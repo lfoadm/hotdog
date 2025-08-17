@@ -7,6 +7,7 @@ const checkoutBtn = document.getElementById('checkout-btn');
 const closeModalBtn = document.getElementById('close-modal-btn');
 const cartCounter = document.getElementById('cart-count');
 const addressInput = document.getElementById('address');
+const notesInput = document.getElementById('notes');
 const addressWarn = document.getElementById('address-warn');
 const spanItem = document.getElementById('date-span');
 
@@ -171,7 +172,7 @@ function addItemCart(name) {
     }
 
 
-// // Evento para incluir o endereço
+// Evento para incluir o endereço
 addressInput.addEventListener("input", function(event) {
     let inputValue = event.target.value;
 
@@ -197,11 +198,10 @@ checkoutBtn.addEventListener('click', function() {
             background: "linear-gradient(to right, #ef4444, #580f0f)",
         },
         }).showToast();
-
-
         return;
     }
     if(cart.length === 0) return;
+
     if(addressInput.value === '') {
         Toastify({
         text: "Informe seu endereço completo!",
@@ -229,6 +229,7 @@ checkoutBtn.addEventListener('click', function() {
     );
 
     const address = addressInput.value;
+    const observations = notesInput.value;
 
     const totalafter = total.toLocaleString("pt-BR", {
     style: 'currency',
@@ -236,7 +237,7 @@ checkoutBtn.addEventListener('click', function() {
     });
 
     const message = encodeURIComponent(
-    `\u{1F31F} Olá! Gostaria de fazer um pedido:\n\n${cartItems}\n\n\u{1F9FE} Total: ${totalafter}\n\u{1F4CD} Endereço: *${address}*\n\n\u{2705} _Aguardando confirmação!_`
+        `\u{1F31F} Olá! Gostaria de fazer um pedido:\n\n${cartItems}\n\n\u{1F9FE} Total: ${totalafter}\n\u{1F4CD} Endereço: *${address}*\n\n📝 Observações: ${observations}\n\n\u{2705} _Aguardando confirmação!_`
     );
 
     const phone = '5534999749344'; // Substitua pelo número de telefone do restaurante

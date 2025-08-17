@@ -154,7 +154,7 @@
       "id": 15,
       "image": "assets/images/drink-laranja.jpg",
       "title": "Suco de laranja 500ML",
-      "description": "500 ml.",
+      "description": "500 ml. Adicional de leite condensado +R$3,00",
       "price": 10.00,
       "category": "Bebidas",
       "available": true
@@ -164,7 +164,7 @@
       "id": 16,
       "image": "assets/images/drink-laranja1.jpg",
       "title": "Suco de laranja 1L",
-      "description": "1 litro.",
+      "description": "1 litro. Adicional de leite condensado +R$3,00",
       "price": 20.00,
       "category": "Bebidas",
       "available": true

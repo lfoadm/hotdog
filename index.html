@@ -14,9 +14,9 @@
     
     <!-- META TAG OG -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Cardápio Lele - Carol Burger" />
+    <meta property="og:title" content="Hotdog da Leide" />
     <meta property="og:description" content="Conheça nosso cardápio e faça seu pedido online!" />
-    <meta property="og:image" content="https://burger-one-iota.vercel.app/assets/img/lele.jpg" />
+    <meta property="og:image" content="https://hotdogdaleide.vercel.app/assets/images/logo.png" />
     <meta property="og:site_name" content="Carol Burger" />
     
     <link rel="stylesheet" href="./styles/output.css" />
@@ -69,34 +69,112 @@
         </div>
         <main id="drink-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
 
+        <!-- Título Adicionais -->
+<div class="flex items-center justify-center mt-6">
+  <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+    <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+      Adicionais
+    </h3>
+  </div>
+</div>
+
+<!-- Lista de Adicionais -->
+<div class="max-w-4xl mx-auto mt-4 px-4">
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Salsinha</span>
+      <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Purê de batata</span>
+      <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Creme de cheddar</span>
+      <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Batata palha</span>
+      <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Azeitona</span>
+      <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Costela desfiada</span>
+      <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Frango</span>
+      <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Carne moída</span>
+      <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Bacon</span>
+      <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+    </li>
+    <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+      <span class="font-medium text-gray-700">Mussarela</span>
+      <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+    </li>
+  </ul>
+</div>
+<div class="mt-20">
+    teste
+</div>
+
+
 
          
     </div>
     <!-- End Menu -->
 
     <!-- Modal cart -->
-    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
-        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
-            <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
+    <div id="cart-modal" class="bg-black/60 w-full h-full fixed inset-0 z-[99] hidden items-center justify-center">
+        <div class="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-[600px] relative">
+            <!-- Título -->
+            <h2 class="text-center font-bold text-2xl mb-4 text-gray-800">🛒 Meu Carrinho</h2>
 
-            <div id="cart-items" class="flex justify-between flex-col"></div>
-            <hr class="border-a border-gray-300 mb-2">
-            <h3 class="font-bold text-2xl">Total: <span id="cart-total">0.00</span></h3>
-            <p class="font-bold mt-4">Endereço de entrega:</p>
+            <!-- Itens do carrinho -->
+            <div id="cart-items" class="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2"></div>
+
+            <hr class="border-gray-300 my-4">
+
+            <!-- Total -->
+            <h3 class="font-bold text-xl text-gray-800">
+            Total: <span id="cart-total" class="text-green-600">R$ 0,00</span>
+            </h3>
+
+            <!-- Observações -->
+            <label for="cart-notes" class="block font-bold mt-4 text-gray-700">Observações do pedido:</label>
+            <textarea
+            id="notes"
+            placeholder="Ex: sem cebola, extra bacon..."
+            class="w-full border-2 p-2 rounded-lg resize-none h-20 focus:ring-2 focus:ring-green-500 outline-none"
+            ></textarea>
+
+            <!-- Endereço -->
+            <label for="address" class="block font-bold mt-4 text-gray-700">Endereço de entrega:</label>
             <input
                 type="text"
-                placeholder="Digite seu endereço completo..."
                 id="address"
-                class="w-full border-2 p-1 rounded my-1"
+                placeholder="Digite seu endereço completo..."
+                class="w-full border-2 p-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
             />
-            <p class="text-red-600 hidden" id="address-warn">Informe seu endereço completo!</p>
-            <div class="flex items-center justify-between mt-5 w-full">
-                <button id="close-modal-btn" class="bg-red-400 text-white px-4 py-1 rounded hover:bg-red-800 transition-all duration-200">
-                    Fechar
-                </button>
-                <button id="checkout-btn" class="bg-green-600 text-white px-4 py-1 rounded">
-                    Finalizar pedido
-                </button>
+            <p class="text-red-600 text-sm mt-1 hidden" id="address-warn">⚠️ Informe seu endereço completo!</p>
+
+            <!-- Ações -->
+            <div class="flex items-center justify-between mt-6">
+            <button id="close-modal-btn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Fechar
+            </button>
+            <button id="checkout-btn" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold transition-colors">
+                Finalizar pedido
+            </button>
             </div>
         </div>
     </div>
@@ -119,7 +197,7 @@
     <!-- End Footer -->
 
     <!-- Footer -->
-<footer class="w-full bg-red-600 py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
+<footer class="w-full bg-[#5E210C] py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
     <button 
         class="flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-red-800 transition-all duration-200"
         id="cart-btn"
