@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- META TAG OG -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Cardápio Lele - Carol Burger" />
+    <meta property="og:description" content="Conheça nosso cardápio e faça seu pedido online!" />
+    <meta property="og:image" content="https://burger-one-iota.vercel.app/assets/img/lele.jpg" />
+    <meta property="og:site_name" content="Carol Burger" />
+    
+    <link rel="stylesheet" href="./styles/output.css" />
+
+    <title>Hot Dog da Leide</title>
+</head>
+<body>
+    
+    <!-- Header -->
+     <header class="w-full h-full bg-cover bg-center bg-gradient-to-r from-[#9e0001] to-[#e00003]">
+        <div class="w-full h-full flex flex-col items-center justify-center">
+            <img src="./assets/images/logo.png" alt="Logo Cardapio" class="w-36 h-36 rounded-full shadow-md hover:scale-110 transition-all duration-200 border-2 mt-6">
+            <!-- <h1 class="text-3xl mt-4 mb-2 font-bold text-[#EF3121]">Hot Dog da Leide</h1> -->
+            <span class="mt-6 font-bold text-center text-white">Avenida Damião Alves Leal nº 695</span>
+            <span class="font-bold text-center text-white">Alto da Boa Vista - Iturama / MG</span>
+            <div class="bg-green-600 px-4 py-1 rounded-lg my-4"  id="date-span">
+                <span class="text-white font-medium">Seg á Dom - 18:00 ás 23:00</span>
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Menu -->
+    
+    <div id="menu">
+        <div class="flex items-center justify-center mt-6">
+            <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+                <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+                Hotdog
+                </h3>
+            </div>
+        </div>
+        <main id="hotdog-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+
+        <div class="flex items-center justify-center mt-6">
+            <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+                <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+                Caldos
+                </h3>
+            </div>
+        </div>
+        <main id="broth-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+
+        <div class="flex items-center justify-center mt-6">
+            <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+                <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+                Bebidas
+                </h3>
+            </div>
+        </div>
+        <main id="drink-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+
+
+         
+    </div>
+    <!-- End Menu -->
+
+    <!-- Modal cart -->
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
+        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+            <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
+
+            <div id="cart-items" class="flex justify-between flex-col"></div>
+            <hr class="border-a border-gray-300 mb-2">
+            <h3 class="font-bold text-2xl">Total: <span id="cart-total">0.00</span></h3>
+            <p class="font-bold mt-4">Endereço de entrega:</p>
+            <input
+                type="text"
+                placeholder="Digite seu endereço completo..."
+                id="address"
+                class="w-full border-2 p-1 rounded my-1"
+            />
+            <p class="text-red-600 hidden" id="address-warn">Informe seu endereço completo!</p>
+            <div class="flex items-center justify-between mt-5 w-full">
+                <button id="close-modal-btn" class="bg-red-400 text-white px-4 py-1 rounded hover:bg-red-800 transition-all duration-200">
+                    Fechar
+                </button>
+                <button id="checkout-btn" class="bg-green-600 text-white px-4 py-1 rounded">
+                    Finalizar pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal cart -->
+
+    
+
+    <!-- Footer -->
+     <!-- <footer class="w-full bg-red-600 py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
+        <button 
+            class="flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-red-800 transition-all duration-200"
+            id="cart-btn"
+        >
+            (<span id="cart-count" class="text-white font-bold">0</span>)
+            Ver carrinho
+            <i class="fa fa-shopping-cart text-white ml-2"></i>
+        </button>
+     </footer> -->
+    <!-- End Footer -->
+
+    <!-- Footer -->
+<footer class="w-full bg-red-600 py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
+    <button 
+        class="flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-red-800 transition-all duration-200"
+        id="cart-btn"
+    >
+        Ver carrinho
+        <div class="relative">
+            <i class="fa fa-shopping-cart text-white text-xl ml-2">
+                <span 
+                id="cart-count"
+                class="hidden absolute -top-1 -right-1 bg-yellow-300 text-red-600 text-xs font-bold rounded-full w-5 h-5 items-center justify-center"
+            ></span></i>
+            
+        </div>
+    </button>
+</footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="./script.js"></script>
+</body>
+</html>

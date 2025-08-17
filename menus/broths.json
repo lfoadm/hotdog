@@ -1,0 +1,33 @@
+{
+  "broth": [
+    {
+      "id": 1,
+      "title": "Caldo de costela",
+      "image": "assets/images/broth-costela.jpg",
+      "description": "500 ml.",
+      "price": 25.00,
+      "category": "Caldo",
+      "available": true
+    },
+
+    {
+      "id": 2,
+      "title": "Caldo de frango",
+      "image": "assets/images/broth-frango.jpg",
+      "description": "500 ml.",
+      "price": 27.00,
+      "category": "Caldo",
+      "available": true
+    },
+
+    {
+      "id": 3,
+      "title": "Caldo misto",
+      "image": "assets/images/broth-misto.jpg",
+      "description": "500 ml.",
+      "price": 30.00,
+      "category": "Caldo",
+      "available": true
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "drink": [
+    {
+      "id": 1,
+      "image": "assets/images/drink-cocacola350.jpg",
+      "title": "Coca-cola lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 2,
+      "image": "assets/images/drink-guarana350.jpg",
+      "title": "Guaraná Antarctica lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 3,
+      "image": "assets/images/drink-fanta350.jpg",
+      "title": "Fanta lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 4,
+      "image": "assets/images/drink-sprite350.jpg",
+      "title": "Sprite lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 5,
+      "image": "assets/images/drink-schweppes350.jpg",
+      "title": "Schweepes tônica lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 6,
+      "image": "assets/images/drink-guaranalitro.jpg",
+      "title": "Guaraná Antarctica 1L",
+      "description": "1 litro.",
+      "price": 8.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 7,
+      "image": "assets/images/drink-fantalitro.jpg",
+      "title": "Fanta 1L",
+      "description": "1 litro.",
+      "price": 8.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 8,
+      "image": "assets/images/drink-guarana2litros.jpg",
+      "title": "Guaraná Antarctica 2L",
+      "description": "2 litros.",
+      "price": 12.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 9,
+      "image": "assets/images/drink-fanta2litros.jpg",
+      "title": "Fanta 2L",
+      "description": "2 litros.",
+      "price": 12.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 10,
+      "image": "assets/images/drink-brahma.jpg",
+      "title": "Brahma lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 11,
+      "image": "assets/images/drink-skol.jpg",
+      "title": "Skol lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 12,
+      "image": "assets/images/drink-boa.jpg",
+      "title": "Antarctica BOA lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 13,
+      "image": "assets/images/drink-cocalitro.jpg",
+      "title": "Coca-cola 1L",
+      "description": "1 litro.",
+      "price": 10.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 14,
+      "image": "assets/images/drink-coca2litros.jpg",
+      "title": "Coca-cola 2L",
+      "description": "2 litros.",
+      "price": 12.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 15,
+      "image": "assets/images/drink-coca25litros.jpg",
+      "title": "Coca-cola  2,5L",
+      "description": "2,5 litros.",
+      "price": 16.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 15,
+      "image": "assets/images/drink-laranja.jpg",
+      "title": "Suco de laranja 500ML",
+      "description": "500 ml.",
+      "price": 10.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 16,
+      "image": "assets/images/drink-laranja1.jpg",
+      "title": "Suco de laranja 1L",
+      "description": "1 litro.",
+      "price": 20.00,
+      "category": "Bebidas",
+      "available": true
+    }
+  ]
+}
