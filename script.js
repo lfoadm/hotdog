@@ -247,7 +247,7 @@ checkoutBtn.addEventListener('click', function() {
     // Mensagem do WhatsApp
     const message = encodeURIComponent(
         `✨ *Novo Pedido!* ✨\n\n` +
-        `📦 *Itens do pedido:*\n${cartItems}\n\n` +
+        `> 📦 *Itens do pedido:*\n${cartItems}\n\n` +
         `💰 *Total:* ${totalafter}\n` +
         `💳 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
         `📍 *Endereço:* ${address}\n\n` +
