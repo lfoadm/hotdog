@@ -249,7 +249,7 @@ checkoutBtn.addEventListener('click', function() {
         `✨ *Novo Pedido!* ✨\n\n` +
         `> 📦 *Itens do pedido:*\n${cartItems}\n\n` +
         `💰 *Total:* ${totalafter}\n` +
-        `💳 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
+        `💲 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
         `📍 *Endereço:* ${address}\n\n` +
         `📝 *Observações:* ${observations || "_-_"}\n\n` +
         `✅ _Aguardando confirmação!_`
