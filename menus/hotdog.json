@@ -23,7 +23,7 @@
       "image": "assets/images/hotdog-costela.jpg",
       "title": "CACHORRO QUENTE DE COSTELA",
       "description": "Pão, costela desfiada, ketchup, maionese, azeitona e batata palha.",
-      "price": 22.00,
+      "price": 24.00,
       "category": "HotDog",
       "available": true
     },
@@ -41,7 +41,7 @@
       "image": "assets/images/hotdog-misto.jpg",
       "title": "CACHORRO QUENTE MISTO",
       "description": "Pão, frango, costela desfiada, salsicha, azeitona, ketchup, maionese, cheddar e batata palha.",
-      "price": 22.00,
+      "price": 25.00,
       "category": "HotDog",
       "available": true
     },
