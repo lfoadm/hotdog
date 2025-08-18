@@ -52,7 +52,7 @@ function addToCart(name, price, description) {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #E6C30E, #E6A90E)",
+            background: "linear-gradient(to right, #15803D, #15803D)",
         },
         }).showToast();
         updateCartModal()
@@ -68,7 +68,7 @@ function addToCart(name, price, description) {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #E6C30E, #E6A90E)",
+            background: "linear-gradient(to right, #15803D, #15803D)",
         },
         }).showToast();
 
@@ -273,7 +273,7 @@ function checkRestaurantOpen() {
     const currentDay = new Date().getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
 
     // Horário de funcionamento: Segunda a Sexta, das 11h às 22h
-    if (currentDay >= 0 && currentDay <= 6 && currentHour >= 1 && currentHour < 24) {
+    if (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23) {
         return true;
     }
     return false;
