@@ -52,6 +52,16 @@
 
     {
       "id": 6,
+      "image": "assets/images/drink-schweppescitrus350.jpg",
+      "title": "Schweepes citrus lata 350",
+      "description": "Lata 350 ml.",
+      "price": 6.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 7,
       "image": "assets/images/drink-guaranalitro.jpg",
       "title": "Guaraná Antarctica 1L",
       "description": "1 litro.",
@@ -61,7 +71,7 @@
     },
 
     {
-      "id": 7,
+      "id": 8,
       "image": "assets/images/drink-fantalitro.jpg",
       "title": "Fanta 1L",
       "description": "1 litro.",
@@ -71,7 +81,7 @@
     },
 
     {
-      "id": 8,
+      "id": 9,
       "image": "assets/images/drink-guarana2litros.jpg",
       "title": "Guaraná Antarctica 2L",
       "description": "2 litros.",
@@ -81,7 +91,7 @@
     },
 
     {
-      "id": 9,
+      "id": 10,
       "image": "assets/images/drink-fanta2litros.jpg",
       "title": "Fanta 2L",
       "description": "2 litros.",
@@ -91,7 +101,7 @@
     },
 
     {
-      "id": 10,
+      "id": 11,
       "image": "assets/images/drink-brahma.jpg",
       "title": "Brahma lata 350",
       "description": "Lata 350 ml.",
@@ -101,7 +111,7 @@
     },
 
     {
-      "id": 11,
+      "id": 12,
       "image": "assets/images/drink-skol.jpg",
       "title": "Skol lata 350",
       "description": "Lata 350 ml.",
@@ -111,7 +121,7 @@
     },
 
     {
-      "id": 12,
+      "id": 13,
       "image": "assets/images/drink-boa.jpg",
       "title": "Antarctica BOA lata 350",
       "description": "Lata 350 ml.",
@@ -121,7 +131,7 @@
     },
 
     {
-      "id": 13,
+      "id": 14,
       "image": "assets/images/drink-cocalitro.jpg",
       "title": "Coca-cola 1L",
       "description": "1 litro.",
@@ -131,7 +141,7 @@
     },
 
     {
-      "id": 14,
+      "id": 15,
       "image": "assets/images/drink-coca2litros.jpg",
       "title": "Coca-cola 2L",
       "description": "2 litros.",
@@ -141,7 +151,7 @@
     },
 
     {
-      "id": 15,
+      "id": 16,
       "image": "assets/images/drink-coca25litros.jpg",
       "title": "Coca-cola  2,5L",
       "description": "2,5 litros.",
@@ -151,7 +161,7 @@
     },
 
     {
-      "id": 15,
+      "id": 17,
       "image": "assets/images/drink-laranja.jpg",
       "title": "Suco de laranja 500ML",
       "description": "500 ml. Adicional de leite condensado +R$3,00",
@@ -161,11 +171,31 @@
     },
 
     {
-      "id": 16,
+      "id": 18,
       "image": "assets/images/drink-laranja1.jpg",
       "title": "Suco de laranja 1L",
       "description": "1 litro. Adicional de leite condensado +R$3,00",
       "price": 20.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 19,
+      "image": "assets/images/drink-agua-sem-gas.jpg",
+      "title": "Água mineral sem gás",
+      "description": "500 ml.",
+      "price": 5.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 20,
+      "image": "assets/images/drink-agua-com-gas.jpg",
+      "title": "Água mineral com gás",
+      "description": "500 ml.",
+      "price": 5.00,
       "category": "Bebidas",
       "available": true
     }
