@@ -123,16 +123,22 @@
   <!-- End Menu -->
 
   <!-- Modal cart -->
-  <div id="cart-modal" class="bg-black/60 w-full h-full fixed inset-0 z-[99] hidden items-center justify-center">
-    <div class="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-[600px] relative">
-        
-        <!-- Título -->
-        <h2 class="text-center font-bold text-2xl mb-4 text-gray-800">🛒 Meu Carrinho</h2>
+  <div id="cart-modal" class="bg-black/60 w-full h-full fixed inset-0 z-[99] hidden overflow-y-auto">
+  <div class="bg-white rounded-2xl shadow-xl w-[95%] max-w-[600px] mx-auto my-4 flex flex-col max-h-[90vh]">
+      
+      <!-- Cabeçalho fixo -->
+      <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10 rounded-t-2xl">
+          <h2 class="text-center font-bold text-2xl text-gray-800">🛒 Meu Carrinho</h2>
+          <button id="close-modal-btn" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition-colors">
+              X
+          </button>
+      </div>
+
+      <!-- Conteúdo rolável -->
+      <div class="p-6 overflow-y-auto flex-1 flex flex-col gap-4">
 
         <!-- Itens do carrinho -->
-        <div id="cart-items" class="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2"></div>
-
-        <hr class="border-gray-300 my-4">
+        <div id="cart-items" class="flex flex-col gap-3"></div>
 
         <!-- Forma de pagamento -->
         <div class="mb-4">
@@ -167,11 +173,12 @@
 
         <!-- Observações -->
         <label for="notes" class="block font-bold text-gray-700">📝 Observações:</label>
-        <textarea
+        <input
+          type="text"
           id="notes"
           placeholder="Ex: sem cebola, extra bacon..."
-          class="w-full border-2 p-2 rounded-lg resize-none h-20 focus:ring-2 focus:ring-green-500 outline-none"
-        ></textarea>
+          class="w-full border-2 p-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+        />
 
         <!-- Endereço -->
         <label for="address" class="block font-bold mt-4 text-gray-700">📍 Endereço de entrega:</label>
@@ -183,21 +190,19 @@
         />
         <p class="text-red-600 text-sm mt-1 hidden" id="address-warn">⚠️ Informe seu endereço completo!</p>
 
-        <!-- Ações -->
-        <div class="flex items-center justify-between mt-6">
-          <button id="close-modal-btn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
-            Fechar
-          </button>
-          <button id="checkout-btn" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold transition-colors">
-            Finalizar pedido
-          </button>
-        </div>
-    </div>
+      </div>
+
+      <!-- Rodapé fixo -->
+      <div class="p-6 border-t flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center sticky bottom-0 bg-white z-10 rounded-b-2xl">
+        <button id="checkout-btn" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold w-full sm:w-auto transition-colors">
+          Finalizar pedido
+        </button>
+      </div>
   </div>
+</div>
 
-
-  <!-- Modal cart -->
-    <!-- End Modal cart -->
+  
+  <!-- End Modal cart -->
 
     
 

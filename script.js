@@ -79,8 +79,8 @@ function addToCart(name, price, description) {
 // Atualiza o carrinho
 function updateCartModal() {
     cartItemsContainer.innerHTML = '';
-    let total = 6;
-
+    let total = 0;
+    let taxa = 6;
 
     cart.forEach(item => {
         const cartItemElement = document.createElement('div');
@@ -105,7 +105,11 @@ function updateCartModal() {
         cartItemsContainer.appendChild(cartItemElement)
     })
 
-    cartTotal.textContent = total.toLocaleString("pt-BR", {
+    // Adiciona taxa de entrega
+    const deliveryFee = 6.00;
+    const subtotal = total + deliveryFee;
+
+    cartTotal.textContent = subtotal.toLocaleString("pt-BR", {
         style: 'currency',
         currency: 'BRL'
     });
@@ -226,16 +230,18 @@ checkoutBtn.addEventListener('click', function() {
     .map(item => `• ${item.name} (R$ ${item.price.toFixed(2)}) x ${item.quantity}`)
     .join('\n');
 
-    const total = parseFloat(
-        cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2)
-    );
+    const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+    // Adiciona taxa de entrega
+    const deliveryFee = 6.00;
+    const total = cartTotal + deliveryFee;
 
     const address = addressInput.value;
     const observations = notesInput.value;
 
     const totalafter = total.toLocaleString("pt-BR", {
-    style: 'currency',
-    currency: 'BRL'
+        style: 'currency',
+        currency: 'BRL'
     });
 
     // Mensagem do WhatsApp
@@ -267,7 +273,7 @@ function checkRestaurantOpen() {
     const currentDay = new Date().getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
 
     // Horário de funcionamento: Segunda a Sexta, das 11h às 22h
-    if (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23) {
+    if (currentDay >= 0 && currentDay <= 6 && currentHour >= 1 && currentHour < 24) {
         return true;
     }
     return false;
