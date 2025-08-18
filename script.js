@@ -79,7 +79,8 @@ function addToCart(name, price, description) {
 // Atualiza o carrinho
 function updateCartModal() {
     cartItemsContainer.innerHTML = '';
-    let total = 0;
+    let total = 6;
+
 
     cart.forEach(item => {
         const cartItemElement = document.createElement('div');
@@ -100,11 +101,8 @@ function updateCartModal() {
             </div>
         </div>
         `
-
         total += item.price * item.quantity;
-
         cartItemsContainer.appendChild(cartItemElement)
-
     })
 
     cartTotal.textContent = total.toLocaleString("pt-BR", {
@@ -219,13 +217,17 @@ checkoutBtn.addEventListener('click', function() {
         return;
     }
 
+    // PEGAR FORMA DE PAGAMENTO SELECIONADA
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
+
+
     // Enviar o pedido para o whatsapp
     const cartItems = cart
     .map(item => `• ${item.name} (R$ ${item.price.toFixed(2)}) x ${item.quantity}`)
     .join('\n');
 
     const total = parseFloat(
-    cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2)
+        cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2)
     );
 
     const address = addressInput.value;
@@ -236,13 +238,15 @@ checkoutBtn.addEventListener('click', function() {
     currency: 'BRL'
     });
 
+    // Mensagem do WhatsApp
     const message = encodeURIComponent(
-    `✨ *Novo Pedido!* ✨\n\n` +
-    `📦 *Itens do pedido:*\n${cartItems}\n\n` +
-    `💰 *Total:* ${totalafter}\n` +
-    `📍 *Endereço:* ${address}\n\n` +
-    `📝 *Observações:* ${observations || "_Nenhuma observação_"}\n\n` +
-    `✅ _Aguardando confirmação!_`
+        `✨ *Novo Pedido!* ✨\n\n` +
+        `📦 *Itens do pedido:*\n${cartItems}\n\n` +
+        `💰 *Total:* ${totalafter}\n` +
+        `💳 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
+        `📍 *Endereço:* ${address}\n\n` +
+        `📝 *Observações:* ${observations || "_-_"}\n\n` +
+        `✅ _Aguardando confirmação!_`
     );
 
     // const message = encodeURIComponent(
