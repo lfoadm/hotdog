@@ -46,7 +46,7 @@ function addToCart(name, price, description) {
         
         Toastify({
         text: `+1 ${name} adicionado ao carrinho.`,
-        duration: 3000,
+        duration: 1000,
         close: true,
         gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
@@ -62,7 +62,7 @@ function addToCart(name, price, description) {
         
         Toastify({
         text: `${name} adicionado ao carrinho.`,
-        duration: 3000,
+        duration: 1000,
         close: true,
         gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
