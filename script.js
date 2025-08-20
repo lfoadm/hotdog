@@ -248,7 +248,7 @@ checkoutBtn.addEventListener('click', function() {
     const message = encodeURIComponent(
         `✨ *Novo Pedido!* ✨\n\n` +
         `> 📦 *Itens do pedido:*\n${cartItems}\n\n` +
-        `💰 *Total:* ${totalafter}\n` +
+        `💰 *Total:* ${totalafter} (Taxa entrega incluso)\n` +
         `💲 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
         `📍 *Endereço:* ${address}\n\n` +
         `📝 *Observações:* ${observations || "_-_"}\n\n` +
