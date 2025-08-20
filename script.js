@@ -259,7 +259,7 @@ checkoutBtn.addEventListener('click', function() {
     //     `\u{1F31F} Olá! Gostaria de fazer um pedido:\n\n${cartItems}\n\n\u{1F9FE} Total: ${totalafter}\n\u{1F4CD} Endereço: *${address}*\n\n📝 Observações: ${observations}\n\n\u{2705} _Aguardando confirmação!_`
     // );
 
-    const phone = '5534999749344'; // Substitua pelo número de telefone do restaurante
+    const phone = '5534988406995'; // Substitua pelo número de telefone do restaurante
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 
     cart = []; // Limpa o carrinho após o pedido
