@@ -290,6 +290,9 @@ if(isOpen){
 
 document.addEventListener("DOMContentLoaded", () => {
     const menuContainer = document.getElementById("hotdog-menu");
+    const imageModal = document.getElementById("image-modal");
+    const modalImage = document.getElementById("modal-image");
+    const closeModal = document.getElementById("close-image-modal");
 
     // Carregar JSON
     fetch("./menus/hotdog.json")
@@ -306,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img
                         src="${produto.image}"
                         alt="${produto.title}"
-                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200"
+                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200 cursor-pointer product-image"
                     />
                     <div class="w-full">
                         <p class="font-bold">${produto.title}</p>
@@ -324,16 +327,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
+                // Adicionar evento de clique na imagem
+                card.querySelector(".product-image").addEventListener("click", (e) => {
+                    modalImage.src = e.target.src;
+                    imageModal.classList.remove("hidden");
+                    imageModal.classList.add("flex");
+                });
+
                 menuContainer.appendChild(card);
             });
         })
         .catch(error => {
             console.error("Erro ao carregar o JSON:", error);
         });
+
+    // Fechar modal
+    closeModal.addEventListener("click", () => {
+        imageModal.classList.add("hidden");
+        imageModal.classList.remove("flex");
+    });
+
+    // Fechar clicando fora da imagem
+    imageModal.addEventListener("click", (e) => {
+        if (e.target === imageModal) {
+            imageModal.classList.add("hidden");
+            imageModal.classList.remove("flex");
+        }
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
     const menuContainer = document.getElementById("broth-menu");
+	const imageModal = document.getElementById("image-modal");
+    const modalImage = document.getElementById("modal-image");
+    const closeModal = document.getElementById("close-image-modal");
 
     // Carregar JSON
     fetch("./menus/broths.json")
@@ -350,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img
                         src="${produto.image}"
                         alt="${produto.title}"
-                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200"
+                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200 cursor-pointer product-image"
                     />
                     <div class="w-full">
                         <p class="font-bold">${produto.title}</p>
@@ -368,6 +395,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
+				// Adicionar evento de clique na imagem
+                card.querySelector(".product-image").addEventListener("click", (e) => {
+                    modalImage.src = e.target.src;
+                    imageModal.classList.remove("hidden");
+                    imageModal.classList.add("flex");
+                });
+				
                 menuContainer.appendChild(card);
             });
         })

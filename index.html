@@ -72,7 +72,7 @@
     </div>
 
     <!-- Lista de Adicionais -->
-    <div class="max-w-4xl mx-auto mt-4 px-4 mb-20">
+    <div class="max-w-4xl mx-auto mt-4 px-4 mb-9">
       <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
           <span class="font-medium text-gray-700">Salsicha</span>
@@ -119,20 +119,18 @@
     <div class="bg-[#EF3121] text-gray-300 py-4 text-center">
       <p class="text-sm">&copy; 2025 Hotdog da Leide. Todos os direitos reservados.</p>
     </div>
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-end mb-10">
-    
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-end mb-3">
       <!-- Texto -->
       <p class="text-sm">
         Desenvolvido por <span class="font-semibold text-zinc-950">Leandro Oliveira</span>
       </p>
-
       <!-- Contato -->
       <a href="https://wa.me/5534999749344" target="_blank" 
         class="mt-2 md:mt-0 text-sm hover:text-green-400 transition">
         📱 (34) 99974-9344
       </a>
     </div>
-    <div class="mt-24">
+    <div class="mt-20">
         
     </div>
   </div>
@@ -216,25 +214,20 @@
       </div>
   </div>
 </div>
+<!-- End Modal cart -->
 
-  
-  <!-- End Modal cart -->
-
-    
-
-    <!-- Footer -->
-     <!-- <footer class="w-full bg-red-600 py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
-        <button 
-            class="flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-red-800 transition-all duration-200"
-            id="cart-btn"
-        >
-            (<span id="cart-count" class="text-white font-bold">0</span>)
-            Ver carrinho
-            <i class="fa fa-shopping-cart text-white ml-2"></i>
-        </button>
-     </footer> -->
-    <!-- End Footer -->
-
+<!-- Modal de Imagem -->
+<div id="image-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[100]">
+  <span id="close-image-modal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
+  <img 
+    id="modal-image" 
+    src="" 
+    alt="Imagem ampliada" 
+    class="max-w-full max-h-full m-3 rounded-lg shadow-lg" 
+  />
+</div>
+<!-- End Modal de Imagem -->
+ 
     <!-- Footer -->
 <footer class="w-full bg-[#5E210C] py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
     <button 
