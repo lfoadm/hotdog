@@ -10,447 +10,316 @@ const addressInput = document.getElementById('address');
 const notesInput = document.getElementById('notes');
 const addressWarn = document.getElementById('address-warn');
 const spanItem = document.getElementById('date-span');
+const delivery = document.getElementById('delivery');
+const pickup = document.getElementById('pickup');
+const addressSection = document.getElementById('address-section');
+const pickupInfo = document.getElementById('pickup-info');
 
 let cart = [];
 
-// Abre o modal do carrinho
-cartBtn.addEventListener('click', function() {
-    updateCartModal();
-    cartModal.style.display = 'flex'
-})
+// Abre modal do carrinho
+cartBtn.addEventListener('click', () => {
+  updateCartModal();
+  cartModal.style.display = 'flex';
+});
 
-// Fecha o modal do carrinho
-cartModal.addEventListener('click', function(event) {
-    if (event.target === cartModal || event.target === closeModalBtn) {
-        cartModal.style.display = 'none';
-    }
-})
+// Fecha modal do carrinho
+cartModal.addEventListener('click', (event) => {
+  if (event.target === cartModal || event.target === closeModalBtn) {
+    cartModal.style.display = 'none';
+  }
+});
 
-// Adiciona o produto ao carrinho
-menu.addEventListener('click', function(event) {
-    let parentButton = event.target.closest('.add-to-cart-btn')
-    if (parentButton) {
-        const name = parentButton.getAttribute('data-name')
-        const price = parseFloat(parentButton.getAttribute('data-price'))
-        const description = parseFloat(parentButton.getAttribute('data-price'))
-        addToCart(name, price, description, parentButton);
-    }
-})
+let isDelivery = false; // padrão é delivery
 
-// Função para adicionar item ao carrinho
+// Abre o campo endereco caso de delivery
+delivery.addEventListener('click', () => {
+  isDelivery = true; // ativa taxa
+  addressSection.classList.remove('hidden');
+  pickupInfo.classList.add('hidden');
+  updateCartModal(); // já recalcula
+});
+
+// fecha o campo endereco caso de retirada
+pickup.addEventListener('click', () => {
+  isDelivery = false; // remove taxa
+  addressSection.classList.add('hidden');
+  pickupInfo.classList.remove('hidden');
+  updateCartModal(); // já recalcula
+});
+
+// Adiciona produto ao carrinho
+menu.addEventListener('click', (event) => {
+  let parentButton = event.target.closest('.add-to-cart-btn');
+  if (parentButton) {
+    const name = parentButton.getAttribute('data-name');
+    const price = parseFloat(parentButton.getAttribute('data-price'));
+    const description = parentButton.getAttribute('data-description') || "";
+    addToCart(name, price, description);
+  }
+});
+
+// Função adicionar item
 function addToCart(name, price, description) {
-    const existingItem = cart.find(item => item.name === name)
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-        
-        Toastify({
-        text: `+1 ${name} adicionado ao carrinho.`,
-        duration: 1000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "linear-gradient(to right, #15803D, #15803D)",
-        },
-        }).showToast();
-        updateCartModal()
-        return;
-    } else{
-        cart.push({ name, price, description, quantity: 1 });
-        
-        Toastify({
-        text: `${name} adicionado ao carrinho.`,
-        duration: 1000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "linear-gradient(to right, #15803D, #15803D)",
-        },
-        }).showToast();
+  const existingItem = cart.find(item => item.name === name);
 
-    }
-    updateCartModal()
+  if (existingItem) {
+    existingItem.quantity += 1;
+    showToast(`+1 ${name} adicionado ao carrinho.`, "success");
+  } else {
+    cart.push({ name, price, description, quantity: 1 });
+    showToast(`${name} adicionado ao carrinho.`, "success");
+  }
+
+  updateCartModal();
 }
 
-// Atualiza o carrinho
+// Toastify helper
+function showToast(text, type = "success") {
+  const colors = {
+    success: "linear-gradient(to right, #15803D, #15803D)",
+    error: "linear-gradient(to right, #ef4444, #580f0f)"
+  };
+
+  Toastify({
+    text,
+    duration: 1500,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    style: {
+      background: colors[type] || colors.success,
+    },
+  }).showToast();
+}
+
+// Atualizar carrinho
 function updateCartModal() {
-    cartItemsContainer.innerHTML = '';
-    let total = 0;
-    let taxa = 6;
+  cartItemsContainer.innerHTML = '';
+  let total = 0;
 
-    cart.forEach(item => {
-        const cartItemElement = document.createElement('div');
-        cartItemElement.classList.add('flex', 'justify-between', 'mb-3', 'flex-col');
+  cart.forEach(item => {
+    const cartItemElement = document.createElement('div');
+    cartItemElement.classList.add('flex', 'justify-between', 'mb-3', 'flex-col');
 
-        cartItemElement.innerHTML = `
-        <div class="flex items-center justify-between bg-white shadow-md rounded-xl p-4 mb-3">
-            <div class="flex flex-col">
-            <p class="font-semibold text-lg text-gray-800">${item.name}</p>
-            <p class="text-sm text-gray-500">Preço unitário: <span class="font-medium text-gray-700">${item.price.toFixed(2)}</span></p>
-            <p class="text-sm text-gray-500">Subtotal: <span class="font-bold text-green-600">R$ ${(item.price * item.quantity).toFixed(2)}</span></p>
-            </div>
-            
-            <div class="flex items-center space-x-2">
-            <button class="remove-from-cart-btn bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-lg font-bold text-lg" data-name="${item.name}">-</button>
-            <p class="font-medium text-gray-800"> ${item.quantity} </p>
-            <button class="add-from-cart-btn bg-green-100 hover:bg-green-200 text-green-600 px-3 py-1 rounded-lg font-bold text-lg" data-name="${item.name}">+</button>
-            </div>
+    cartItemElement.innerHTML = `
+      <div class="flex items-center justify-between bg-white shadow-md rounded-xl p-4 mb-3">
+        <div class="flex flex-col">
+          <p class="font-semibold text-lg text-gray-800">${item.name}</p>
+          ${item.description ? `<p class="text-sm text-gray-500">${item.description}</p>` : ""}
+          <p class="text-sm text-gray-500">Preço unitário: <span class="font-medium text-gray-700">R$ ${item.price.toFixed(2)}</span></p>
+          <p class="text-sm text-gray-500">Subtotal: <span class="font-bold text-green-600">R$ ${(item.price * item.quantity).toFixed(2)}</span></p>
         </div>
-        `
-        total += item.price * item.quantity;
-        cartItemsContainer.appendChild(cartItemElement)
-    })
+        <div class="flex items-center space-x-2">
+          <button class="remove-from-cart-btn bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1 rounded-lg font-bold text-lg" data-name="${item.name}">-</button>
+          <p class="font-medium text-gray-800">${item.quantity}</p>
+          <button class="add-from-cart-btn bg-green-100 hover:bg-green-200 text-green-600 px-3 py-1 rounded-lg font-bold text-lg" data-name="${item.name}">+</button>
+        </div>
+      </div>
+    `;
+    total += item.price * item.quantity;
+    cartItemsContainer.appendChild(cartItemElement);
+  });
 
-    // Adiciona taxa de entrega
-    const deliveryFee = 6.00;
-    const subtotal = total + deliveryFee;
+  // aplica taxa só se for delivery
+  const deliveryFee = isDelivery ? 6.00 : 0;
+  const subtotal = total + deliveryFee;
 
-    cartTotal.textContent = subtotal.toLocaleString("pt-BR", {
-        style: 'currency',
-        currency: 'BRL'
-    });
+  cartTotal.textContent = subtotal.toLocaleString("pt-BR", {
+    style: 'currency',
+    currency: 'BRL'
+  });
 
-    // if (cart.length > 0) {
-    //     cartCounter.classList.remove('hidden');
-    //     cartCounter.textContent = cart.length;
-    // } else {
-    //     cartCounter.classList.add('hidden');
-    // }
-
-    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-    if (totalQuantity > 0) {
-        cartCounter.classList.remove('hidden');
-        cartCounter.textContent = totalQuantity;
-    } else {
-        cartCounter.classList.add('hidden');
-    }
-
+  const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  if (totalQuantity > 0) {
+    cartCounter.classList.remove('hidden');
+    cartCounter.textContent = totalQuantity;
+  } else {
+    cartCounter.classList.add('hidden');
+  }
 }
 
-// Evento para remover item do carrinho
-cartItemsContainer.addEventListener('click', function(event) {
-    if (event.target.classList.contains('remove-from-cart-btn')) {
-        const name = event.target.getAttribute('data-name');
-        removeItemCart(name);
-    }
-})
+
+// Remover item
+cartItemsContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('remove-from-cart-btn')) {
+    const name = event.target.getAttribute('data-name');
+    removeItemCart(name);
+  }
+});
 
 function removeItemCart(name) {
-    const index = cart.findIndex(item => item.name === name);
-    
-    if (index !== -1) {
-        const item = cart[index];
-        
-        if (cart[index].quantity > 1) {
-            item.quantity -= 1;
-            updateCartModal();
-            return;
-        }
-        cart.splice(index, 1);
-        updateCartModal();
+  const index = cart.findIndex(item => item.name === name);
+
+  if (index !== -1) {
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1);
     }
+    updateCartModal();
+  }
 }
 
-// Evento para AUMENTAR item do carrinho
-cartItemsContainer.addEventListener('click', function(event) {
-    if (event.target.classList.contains('add-from-cart-btn')) {
-        const name = event.target.getAttribute('data-name');
-        addItemCart(name);
-    }
-})
+// Aumentar item
+cartItemsContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('add-from-cart-btn')) {
+    const name = event.target.getAttribute('data-name');
+    addItemCart(name);
+  }
+});
 
 function addItemCart(name) {
-    const index = cart.findIndex(item => item.name === name);
-    
-    if (index !== -1) {
-        cart[index].quantity += 1;
-        updateCartModal();
-        }
-    }
+  const index = cart.findIndex(item => item.name === name);
+  if (index !== -1) {
+    cart[index].quantity += 1;
+    updateCartModal();
+  }
+}
 
+// Endereço input
+addressInput.addEventListener("input", (event) => {
+  if (event.target.value !== '') {
+    addressInput.classList.remove('border-red-500');
+    addressWarn.classList.add('hidden');
+  }
+});
 
-// Evento para incluir o endereço
-addressInput.addEventListener("input", function(event) {
-    let inputValue = event.target.value;
+// Finalizar pedido
+checkoutBtn.addEventListener('click', () => {
+  const isOpen = checkRestaurantOpen();
+  if (!isOpen) {
+    showToast("O HOTDOG DA LEIDE está fechado no momento", "error");
+    return;
+  }
+  if (cart.length === 0) return;
 
-    if (inputValue !== '') {
-        addressInput.classList.remove('border-red-500');
-        addressWarn.classList.add('hidden');
-    }
-})
+  if (isDelivery && addressInput.value === '') {
+    showToast("Informe seu endereço completo!", "error");
+    addressInput.classList.add('border-red-500');
+    return;
+  }
 
-// Evento para finalizar o pedido
-checkoutBtn.addEventListener('click', function() {
-    const isOpen = checkRestaurantOpen();
-    if (!isOpen) {
-        
-        Toastify({
-        text: "O HOTDOG DA LEIDE está fechado no momento",
-        duration: 3000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "linear-gradient(to right, #ef4444, #580f0f)",
-        },
-        }).showToast();
-        return;
-    }
-    if(cart.length === 0) return;
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
 
-    if(addressInput.value === '') {
-        Toastify({
-        text: "Informe seu endereço completo!",
-        duration: 3000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "linear-gradient(to right, #ef4444, #j1j15)",
-        },
-        }).showToast();
-
-        addressInput.classList.add('border-red-500');
-        return;
-    }
-
-    // PEGAR FORMA DE PAGAMENTO SELECIONADA
-    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
-
-
-    // Enviar o pedido para o whatsapp
-    const cartItems = cart
+  const cartItems = cart
     .map(item => `• ${item.name} (R$ ${item.price.toFixed(2)}) x ${item.quantity}`)
     .join('\n');
 
-    const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const cartTotalValue = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const deliveryFee = isDelivery ? 6.00 : 0;
+  const total = cartTotalValue + deliveryFee;
 
-    // Adiciona taxa de entrega
-    const deliveryFee = 6.00;
-    const total = cartTotal + deliveryFee;
+  const address = isDelivery ? addressInput.value : "Retirada no local";
+  const observations = notesInput.value;
+  const totalFormatted = total.toLocaleString("pt-BR", {
+    style: 'currency',
+    currency: 'BRL'
+  });
 
-    const address = addressInput.value;
-    const observations = notesInput.value;
+  const message = encodeURIComponent(
+    `✨ *Novo Pedido!* ✨\n\n` +
+    `📦 *Itens do pedido:*\n${cartItems}\n\n` +
+    `💰 *Total:* ${totalFormatted}${isDelivery ? " (com taxa de entrega)" : ""}\n` +
+    `💲 *Pagamento:* ${paymentMethod}\n` +
+    `📍 *Endereço:* ${address}\n\n` +
+    `📝 *Observações:* ${observations || "_-_" }\n\n` +
+    `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰_Aguardando tempo para retirada do pedido_"}\n`
+  );
 
-    const totalafter = total.toLocaleString("pt-BR", {
-        style: 'currency',
-        currency: 'BRL'
-    });
+  const phone = '5534988406995';
+  window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 
-    // Mensagem do WhatsApp
-    const message = encodeURIComponent(
-        `✨ *Novo Pedido!* ✨\n\n` +
-        `> 📦 *Itens do pedido:*\n${cartItems}\n\n` +
-        `💰 *Total:* ${totalafter} (Taxa entrega incluso)\n` +
-        `💲 *Forma de pagamento:* ${paymentMethod}\n` +   // <-- aqui entra
-        `📍 *Endereço:* ${address}\n\n` +
-        `📝 *Observações:* ${observations || "_-_"}\n\n` +
-        `✅ _Aguardando confirmação!_`
-    );
-
-    // const message = encodeURIComponent(
-    //     `\u{1F31F} Olá! Gostaria de fazer um pedido:\n\n${cartItems}\n\n\u{1F9FE} Total: ${totalafter}\n\u{1F4CD} Endereço: *${address}*\n\n📝 Observações: ${observations}\n\n\u{2705} _Aguardando confirmação!_`
-    // );
-
-    const phone = '5534988406995'; // Substitua pelo número de telefone do restaurante
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-
-    cart = []; // Limpa o carrinho após o pedido
-    updateCartModal();
-
-})
+  cart = [];
+  updateCartModal();
+});
 
 
+// Checa funcionamento
 function checkRestaurantOpen() {
-    const currentHour = new Date().getHours();
-    const currentDay = new Date().getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
-
-    // Horário de funcionamento: Segunda a Sexta, das 11h às 22h
-    if (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23) {
-        return true;
-    }
-    return false;
+  const currentHour = new Date().getHours();
+  const currentDay = new Date().getDay();
+  return (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23);
 }
 
 const isOpen = checkRestaurantOpen();
-if(isOpen){
-    spanItem.classList.remove('bg-red-600');
-    spanItem.classList.add('bg-green-600');
+if (isOpen) {
+  spanItem.classList.remove('bg-red-600');
+  spanItem.classList.add('bg-green-600');
 } else {
-    spanItem.classList.remove('bg-green-600');
-    spanItem.classList.add('bg-red-600');
+  spanItem.classList.remove('bg-green-600');
+  spanItem.classList.add('bg-red-600');
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const menuContainer = document.getElementById("hotdog-menu");
-    const imageModal = document.getElementById("image-modal");
-    const modalImage = document.getElementById("modal-image");
-    const closeModal = document.getElementById("close-image-modal");
+// ======================
+// Função para carregar menus
+// ======================
+function loadMenu(containerId, jsonFile, key) {
+  const menuContainer = document.getElementById(containerId);
+  const imageModal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  const closeModal = document.getElementById("close-image-modal");
 
-    // Carregar JSON
-    fetch("./menus/hotdog.json")
-        .then(response => response.json())
-        .then(data => {
-            const produtos = data.hotdog;
+  fetch(`./menus/${jsonFile}`)
+    .then(response => response.json())
+    .then(data => {
+      const produtos = data[key];
 
-            produtos.forEach(produto => {
-                // Criar o card
-                const card = document.createElement("div");
-                card.classList = "flex gap-6 items-center bg-white shadow-lg rounded-lg p-4";
+      produtos.forEach(produto => {
+        const card = document.createElement("div");
+        card.classList = "flex gap-6 items-center bg-white shadow-lg rounded-lg p-4";
 
-                card.innerHTML = `
-                    <img
-                        src="${produto.image}"
-                        alt="${produto.title}"
-                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200 cursor-pointer product-image"
-                    />
-                    <div class="w-full">
-                        <p class="font-bold">${produto.title}</p>
-                        <p class="text-sm">${produto.description}</p>
-                        <div class="flex items-center justify-between mt-5">
-                            <p class="font-bold text-lg">R$ ${produto.price.toFixed(2)}</p>
-                            <button
-                                class="bg-green-600 hover:bg-green-700 px-5 rounded add-to-cart-btn"
-                                data-name="${produto.title}"
-                                data-price="${produto.price}"
-                            >
-                                <i class="fa fa-cart-plus text-lg text-white"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
+        card.innerHTML = `
+          <img
+            src="${produto.image}"
+            alt="${produto.title}"
+            class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200 cursor-pointer product-image"
+          />
+          <div class="w-full">
+            <p class="font-bold">${produto.title}</p>
+            <p class="text-sm">${produto.description || ""}</p>
+            <div class="flex items-center justify-between mt-5">
+              <p class="font-bold text-lg">R$ ${produto.price.toFixed(2)}</p>
+              <button
+                class="bg-green-600 hover:bg-green-700 px-5 rounded add-to-cart-btn"
+                data-name="${produto.title}"
+                data-price="${produto.price}"
+                data-description="${produto.description || ""}"
+              >
+                <i class="fa fa-cart-plus text-lg text-white"></i>
+              </button>
+            </div>
+          </div>
+        `;
 
-                // Adicionar evento de clique na imagem
-                card.querySelector(".product-image").addEventListener("click", (e) => {
-                    modalImage.src = e.target.src;
-                    imageModal.classList.remove("hidden");
-                    imageModal.classList.add("flex");
-                });
-
-                menuContainer.appendChild(card);
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar o JSON:", error);
+        card.querySelector(".product-image").addEventListener("click", (e) => {
+          modalImage.src = e.target.src;
+          imageModal.classList.remove("hidden");
+          imageModal.classList.add("flex");
         });
 
-    // Fechar modal
-    closeModal.addEventListener("click", () => {
-        imageModal.classList.add("hidden");
-        imageModal.classList.remove("flex");
-    });
+        menuContainer.appendChild(card);
+      });
+    })
+    .catch(error => console.error("Erro ao carregar o JSON:", error));
 
-    // Fechar clicando fora da imagem
-    imageModal.addEventListener("click", (e) => {
-        if (e.target === imageModal) {
-            imageModal.classList.add("hidden");
-            imageModal.classList.remove("flex");
-        }
-    });
-});
+  closeModal.addEventListener("click", () => {
+    imageModal.classList.add("hidden");
+    imageModal.classList.remove("flex");
+  });
 
+  imageModal.addEventListener("click", (e) => {
+    if (e.target === imageModal) {
+      imageModal.classList.add("hidden");
+      imageModal.classList.remove("flex");
+    }
+  });
+}
+
+// Inicializar menus
 document.addEventListener("DOMContentLoaded", () => {
-    const menuContainer = document.getElementById("broth-menu");
-	const imageModal = document.getElementById("image-modal");
-    const modalImage = document.getElementById("modal-image");
-    const closeModal = document.getElementById("close-image-modal");
-
-    // Carregar JSON
-    fetch("./menus/broths.json")
-        .then(response => response.json())
-        .then(data => {
-            const produtos = data.broth;
-
-            produtos.forEach(produto => {
-                // Criar o card
-                const card = document.createElement("div");
-                card.classList = "flex gap-6 items-center bg-white shadow-lg rounded-lg p-4";
-
-                card.innerHTML = `
-                    <img
-                        src="${produto.image}"
-                        alt="${produto.title}"
-                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200 cursor-pointer product-image"
-                    />
-                    <div class="w-full">
-                        <p class="font-bold">${produto.title}</p>
-                        <p class="text-sm">${produto.description}</p>
-                        <div class="flex items-center justify-between mt-5">
-                            <p class="font-bold text-lg">R$ ${produto.price.toFixed(2)}</p>
-                            <button
-                                class="bg-green-600 hover:bg-green-700 px-5 rounded add-to-cart-btn"
-                                data-name="${produto.title}"
-                                data-price="${produto.price}"
-                            >
-                                <i class="fa fa-cart-plus text-lg text-white"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-				// Adicionar evento de clique na imagem
-                card.querySelector(".product-image").addEventListener("click", (e) => {
-                    modalImage.src = e.target.src;
-                    imageModal.classList.remove("hidden");
-                    imageModal.classList.add("flex");
-                });
-				
-                menuContainer.appendChild(card);
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar o JSON:", error);
-        });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const menuContainer = document.getElementById("drink-menu");
-
-    // Carregar JSON
-    fetch("./menus/drink.json")
-        .then(response => response.json())
-        .then(data => {
-            const bebidas = data.drink;
-
-            bebidas.forEach(bebida => {
-                // Criar o card
-                const card = document.createElement("div");
-                card.classList = "flex gap-6 items-center bg-white shadow-lg rounded-lg p-4";
-
-                card.innerHTML = `
-                    <img
-                        src="${bebida.image}"
-                        alt="${bebida.title}"
-                        class="w-28 h-28 object-cover rounded-lg hover:scale-110 hover:rotate-2 duration-200"
-                    />
-                    <div class="w-full">
-                        <p class="font-bold">${bebida.title}</p>
-                        <p class="text-sm">${bebida.description}</p>
-                        <div class="flex items-center justify-between mt-5">
-                            <p class="font-bold text-lg">R$ ${bebida.price.toFixed(2)}</p>
-                            <button
-                                class="bg-green-600 hover:bg-green-700 px-5 rounded add-to-cart-btn"
-                                data-name="${bebida.title}"
-                                data-price="${bebida.price}"
-                                data-description="${bebida.description}"
-                            >
-                                <i class="fa fa-cart-plus text-lg text-white"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                menuContainer.appendChild(card);
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar o JSON:", error);
-        });
+  loadMenu("hotdog-menu", "hotdog.json", "hotdog");
+  loadMenu("broth-menu", "broths.json", "broth");
+  loadMenu("drink-menu", "drink.json", "drink");
 });

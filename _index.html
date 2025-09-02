@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- META TAG OG -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hotdog da Leide" />
+    <meta property="og:description" content="Conheça nosso cardápio e faça seu pedido online!" />
+    <meta property="og:image" content="https://hotdogdaleide.vercel.app/assets/images/logo.png" />
+    <meta property="og:site_name" content="Hotdog da Leide" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>Hot Dog da Leide</title>
+</head>
+<body>
+  <!-- Header -->
+    <header class="w-full h-[360px] bg-zinc-900 bg-home bg-cover bg-center">
+      <div class="w-full h-full flex flex-col items-center justify-center">
+          <img src="./assets/images/logo.png" alt="Logo Cardapio" class="w-36 h-36 rounded-full shadow-md hover:scale-110 transition-all duration-200 border-2 mt-6">
+          <!-- <h1 class="text-3xl mt-4 mb-2 font-bold text-[#EF3121]">Hot Dog da Leide</h1> -->
+          <span class="mt-6 font-bold text-center text-white">Avenida Damião Alves Leal nº 695</span>
+          <span class="font-bold text-center text-white">Alto da Boa Vista - Iturama / MG</span>
+          <div class="bg-green-600 px-4 py-1 rounded-lg my-4"  id="date-span">
+              <span class="text-white font-medium">Seg á Dom - 18:00 ás 23:00</span>
+          </div>
+      </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- Menu -->
+    
+  <div id="menu">
+    <div class="flex items-center justify-center mt-6">
+        <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+            <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+            Hotdog
+            </h3>
+        </div>
+    </div>
+    <main id="hotdog-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+    <div class="flex items-center justify-center mt-9">
+        <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+            <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+            Caldos
+            </h3>
+        </div>
+    </div>
+    <main id="broth-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+
+    <div class="flex items-center justify-center mt-9">
+        <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+            <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+            Bebidas
+            </h3>
+        </div>
+    </div>
+    <main id="drink-menu" class="grid grid-cols-1 gap-6 md:gap-6 md:grid-cols-2 max-w-7xl mx-auto px-4 mt-2"></main>
+
+    <!-- Título Adicionais -->
+    <div class="flex items-center justify-center mt-9">
+      <div class="bg-[#FFAA00] rounded-lg flex items-center justify-center">
+        <h3 class="text-xl md:text-3xl font-bold text-white px-4 py-2">
+          Adicionais
+        </h3>
+      </div>
+    </div>
+
+    <!-- Lista de Adicionais -->
+    <div class="max-w-4xl mx-auto mt-4 px-4 mb-9">
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Salsicha</span>
+          <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Purê de batata</span>
+          <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Creme de cheddar</span>
+          <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Batata palha</span>
+          <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Azeitona</span>
+          <span class="font-bold text-[#FFAA00]">R$ 3,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Costela desfiada</span>
+          <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Frango</span>
+          <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Carne moída</span>
+          <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Bacon</span>
+          <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+        </li>
+        <li class="flex justify-between items-center bg-white rounded-lg shadow p-3">
+          <span class="font-medium text-gray-700">Mussarela</span>
+          <span class="font-bold text-[#FFAA00]">R$ 5,00</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-[#EF3121] text-gray-300 py-4 text-center">
+      <p class="text-sm">&copy; 2025 Hotdog da Leide. Todos os direitos reservados.</p>
+    </div>
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-end mb-3">
+      <!-- Texto -->
+      <p class="text-sm">
+        Desenvolvido por <span class="font-semibold text-zinc-950">Leandro Oliveira</span>
+      </p>
+      <!-- Contato -->
+      <a href="https://wa.me/5534999749344" target="_blank" 
+        class="mt-2 md:mt-0 text-sm hover:text-green-400 transition">
+        📱 (34) 99974-9344
+      </a>
+    </div>
+    <div class="mt-20">
+        
+    </div>
+  </div>
+  <!-- End Menu -->
+
+  <!-- Modal cart -->
+  <div id="cart-modal" class="bg-black/60 w-full h-full fixed inset-0 z-[99] hidden overflow-y-auto">
+  <div class="bg-white rounded-2xl shadow-xl w-[95%] max-w-[600px] mx-auto my-4 flex flex-col max-h-[90vh]">
+      
+      <!-- Cabeçalho fixo -->
+      <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10 rounded-t-2xl">
+          <h2 class="text-center font-bold text-2xl text-gray-800">🛒 Meu Carrinho</h2>
+          <button id="close-modal-btn" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition-colors">
+              X
+          </button>
+      </div>
+
+      <!-- Conteúdo rolável -->
+      <div class="p-6 overflow-y-auto flex-1 flex flex-col gap-4">
+
+        <!-- Itens do carrinho -->
+        <div id="cart-items" class="flex flex-col gap-3"></div>
+
+        <!-- Forma de pagamento -->
+        <div class="mb-4">
+          <p class="font-semibold text-gray-800 mb-2">💲 Forma de pagamento:</p>
+          <div class="grid grid-cols-1 gap-2">
+            <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50">
+              <input id="money" type="radio" name="paymentMethod" value="💵 Dinheiro" class="accent-green-600">
+              <span>💵 Dinheiro</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50">
+              <input id="pix" type="radio" name="paymentMethod" value="📲 Pix" class="accent-green-600">
+              <span>📲 Pix</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50">
+              <input id="card" type="radio" name="paymentMethod" value="💳 Cartão Débito/Crédito" class="accent-green-600" checked>
+              <span>💳 Cartão de Débito/Crédito</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Totais -->
+        <div class="bg-gray-100 p-4 rounded-lg mb-4">
+          <h5 class="font-bold text-sm text-gray-800 flex justify-between">
+            <span>🚚 Taxa de entrega:</span>
+            <span class="text-indigo-600">R$ 6,00</span>
+          </h5>
+          <h3 class="font-bold text-lg text-gray-800 flex justify-between mt-2">
+            <span>Total:</span>
+            <span id="cart-total" class="text-green-600">R$ 0,00</span>
+          </h3>
+        </div>
+
+        <!-- Observações -->
+        <label for="notes" class="block font-bold text-gray-700">📝 Observações:</label>
+        <input
+          type="text"
+          id="notes"
+          placeholder="Ex: sem cebola, extra bacon..."
+          class="w-full border-2 p-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+        />
+
+        <!-- Endereço -->
+        <label for="address" class="block font-bold mt-4 text-gray-700">📍 Endereço de entrega:</label>
+        <input
+          type="text"
+          id="address"
+          placeholder="Digite seu endereço completo..."
+          class="w-full border-2 p-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+        />
+        <p class="text-red-600 text-sm mt-1 hidden" id="address-warn">⚠️ Informe seu endereço completo!</p>
+
+      </div>
+
+      <!-- Rodapé fixo -->
+      <div class="p-6 border-t flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center sticky bottom-0 bg-white z-10 rounded-b-2xl">
+        <button id="checkout-btn" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold w-full sm:w-auto transition-colors">
+          Finalizar pedido
+        </button>
+      </div>
+  </div>
+</div>
+<!-- End Modal cart -->
+
+<!-- Modal de Imagem -->
+<div id="image-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[100]">
+  <span id="close-image-modal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
+  <img 
+    id="modal-image" 
+    src="" 
+    alt="Imagem ampliada" 
+    class="max-w-full max-h-full m-3 rounded-lg shadow-lg" 
+  />
+</div>
+<!-- End Modal de Imagem -->
+ 
+    <!-- Footer -->
+<footer class="w-full bg-[#5E210C] py-3 fixed bottom-0 z-40 text-white flex items-center justify-center">
+    <button 
+        class="flex items-center justify-center gap-2 px-4 py-2 rounded transition-all duration-200"
+        id="cart-btn"
+    >
+        Ver carrinho
+        <div class="relative">
+            <i class="fa fa-shopping-cart text-white text-xl ml-2">
+                <span 
+                id="cart-count"
+                class="hidden absolute -top-1 -right-1 bg-yellow-300 text-red-600 text-xs font-bold rounded-full w-5 h-5 items-center justify-center"
+            ></span></i>
+            
+        </div>
+    </button>
+</footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="./script.js"></script>
+</body>
+</html>
