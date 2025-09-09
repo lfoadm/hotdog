@@ -5,7 +5,7 @@
       "image": "assets/images/hotdog-frango.jpg",
       "title": "CACHORRO QUENTE DE FRANGO",
       "description": "Pão, salsicha, frango, azeitona, ketchup, maionese, creme de cheddar e batata palha.",
-      "price": 20.00,
+      "price": 22.00,
       "category": "HotDog",
       "available": true
     },
@@ -51,7 +51,7 @@
       "image": "assets/images/hotdog-carne.jpg",
       "title": "CACHORRO QUENTE DE CARNE MOÍDA",
       "description": "Pão, carne moída, purê de batata, salsicha, azeitona, ketchup, maionese e batata palha.",
-      "price": 22.00,
+      "price": 24.00,
       "category": "HotDog",
       "available": true
     },
