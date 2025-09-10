@@ -182,26 +182,6 @@
 
     {
       "id": 19,
-      "image": "assets/images/drink-laranja.jpg",
-      "title": "Suco de laranja 500ML",
-      "description": "500 ml. Adicional de leite condensado +R$3,00",
-      "price": 10.00,
-      "category": "Bebidas",
-      "available": true
-    },
-
-    {
-      "id": 20,
-      "image": "assets/images/drink-laranja1.jpg",
-      "title": "Suco de laranja 1L",
-      "description": "1 litro. Adicional de leite condensado +R$3,00",
-      "price": 20.00,
-      "category": "Bebidas",
-      "available": true
-    },
-
-    {
-      "id": 21,
       "image": "assets/images/drink-agua-sem-gas.jpg",
       "title": "Água mineral sem gás",
       "description": "500 ml.",
@@ -211,7 +191,7 @@
     },
 
     {
-      "id": 22,
+      "id": 20,
       "image": "assets/images/drink-agua-com-gas.jpg",
       "title": "Água mineral com gás",
       "description": "500 ml.",

@@ -5,7 +5,8 @@
       "title": "Costela desfiada",
       "price": 5.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -13,7 +14,8 @@
       "title": "Frango",
       "price": 5.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -21,7 +23,8 @@
       "title": "Carne moída",
       "price": 5.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -29,7 +32,8 @@
       "title": "Bacon",
       "price": 5.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -37,7 +41,8 @@
       "title": "Mussarela",
       "price": 5.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -45,7 +50,8 @@
       "title": "Salsicha",
       "price": 3.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -53,7 +59,8 @@
       "title": "Purê de batata",
       "price": 3.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -61,7 +68,8 @@
       "title": "Creme de cheddar",
       "price": 3.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -69,7 +77,8 @@
       "title": "Batata palha",
       "price": 3.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
     },
 
     {
@@ -77,7 +86,17 @@
       "title": "Azeitona",
       "price": 3.00,
       "category": "Adicional",
-      "available": true
+      "available": true,
+      "for": "hotdog"
+    },
+
+    {
+      "id": 11,
+      "title": "Leite condensado",
+      "price": 3.00,
+      "category": "Adicional",
+      "available": true,
+      "for": "juice"
     }
   ]
 }

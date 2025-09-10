@@ -1,0 +1,23 @@
+{
+  "juice": [
+    {
+      "id": 1,
+      "image": "assets/images/drink-laranja.jpg",
+      "title": "Suco de laranja 500ML",
+      "description": "500 ml.",
+      "price": 10.00,
+      "category": "Bebidas",
+      "available": true
+    },
+
+    {
+      "id": 2,
+      "image": "assets/images/drink-laranja1.jpg",
+      "title": "Suco de laranja 1L",
+      "description": "1 litro.",
+      "price": 20.00,
+      "category": "Bebidas",
+      "available": true
+    }
+  ]
+}
