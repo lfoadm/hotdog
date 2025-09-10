@@ -413,9 +413,9 @@ checkoutBtn.addEventListener('click', () => {
     const additionsSum = (item.additionals || []).reduce((acc, a) => acc + Number(a.price || 0), 0);
     const itemTotal = (Number(item.price) + additionsSum) * Number(item.quantity);
     total += itemTotal;
-    message += `• ${item.quantity}x ${item.name} - R$ ${Number(item.price).toFixed(2)}\n`;
+    message += `• ${item.quantity} unidade(s) ${item.name} - R$ ${Number(item.price).toFixed(2)}\n`;
     if (item.additionals?.length) message += `   ➕ Adicionais: ${item.additionals.map(a => `${a.name} (R$ ${Number(a.price).toFixed(2)})`).join(', ')}\n`;
-    if (item.description) message += `   📝 ${item.description}\n`;
+    //if (item.description) message += `   📝 ${item.description}\n`;
     message += `   Subtotal: R$ ${itemTotal.toFixed(2)}\n\n`;
   });
 
@@ -432,7 +432,7 @@ checkoutBtn.addEventListener('click', () => {
   message += `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰ _Aguardando tempo para retirada!_"}\n`;
 
   const encoded = encodeURIComponent(message);
-  const phone = '5534999749344';
+  const phone = '5534988406995';
   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
 
   cart = [];
