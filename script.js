@@ -416,7 +416,7 @@ checkoutBtn.addEventListener('click', () => {
     message += `• ${item.quantity} unidade(s) ${item.name} - R$ ${Number(item.price).toFixed(2)}\n`;
     if (item.additionals?.length) message += `   ➕ Adicionais: ${item.additionals.map(a => `${a.name} (R$ ${Number(a.price).toFixed(2)})`).join(', ')}\n`;
     //if (item.description) message += `   📝 ${item.description}\n`;
-    message += `   Subtotal: R$ ${itemTotal.toFixed(2)}\n\n`;
+    message += `   Subtotal: *R$ ${itemTotal.toFixed(2)}*\n\n`;
   });
 
   const deliveryFee = isDelivery ? 6.00 : 0;
