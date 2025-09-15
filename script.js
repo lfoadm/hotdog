@@ -69,7 +69,7 @@ function formatBRL(value) {
 function checkRestaurantOpen() {
   const currentHour = new Date().getHours();
   const currentDay = new Date().getDay();
-  return (currentDay >= 0 && currentDay <= 6 && currentHour >= 10 && currentHour < 23);
+  return (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23);
 }
 
 // ======= Atualiza badge de status =======
