@@ -30,7 +30,7 @@
     {
       "id": 4,
       "title": "Bacon",
-      "price": 5.00,
+      "price": 7.00,
       "category": "Adicional",
       "available": true,
       "for": "hotdog"
@@ -92,6 +92,15 @@
 
     {
       "id": 11,
+      "title": "Ketchup + Maionese",
+      "price": 3.00,
+      "category": "Adicional",
+      "available": true,
+      "for": "hotdog"
+    },
+
+    {
+      "id": 12,
       "title": "Leite condensado",
       "price": 3.00,
       "category": "Adicional",
