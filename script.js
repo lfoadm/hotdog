@@ -30,6 +30,8 @@ const pickupInfo = document.getElementById('pickup-info');
 // ======= Estado =======
 let cart = [];
 let isDelivery = false;
+let paymentMethod = "📲 Pix"; // padrão
+const CARD_FEE = 1.00;
 
 let globalAdditionals = []; // carregará todos os adicionais do JSON
 
@@ -199,6 +201,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadMenu("drink-menu", "drink.json", "drink");
 });
 
+// ======= Ao selecionar o tipo de pagamento cartão de crédito (atualiza o estado do tipo de pgto) =======
+document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    paymentMethod = e.target.value;
+    renderCart(); // recalcula o total automaticamente
+  });
+});
+
 // ======= Abrir Modal Produto =======
 menu.addEventListener('click', (event) => {
   const openBtn = event.target.closest('.open-product-btn');
@@ -358,9 +368,17 @@ function renderCart() {
     cartItemsContainer.appendChild(cartItemElement);
   });
 
+  // const deliveryFee = isDelivery ? 6.00 : 0;
+  // const subtotal = total + deliveryFee;
+  // cartTotal.textContent = formatBRL(subtotal);
+
   const deliveryFee = isDelivery ? 6.00 : 0;
-  const subtotal = total + deliveryFee;
-  cartTotal.textContent = formatBRL(subtotal);
+  const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
+
+  const finalTotal = total + deliveryFee + cardFee;
+  cartTotal.textContent = formatBRL(finalTotal);
+
+
 
   const totalQuantity = cart.reduce((acc, item) => acc + Number(item.quantity), 0);
   if (totalQuantity > 0) {
@@ -405,7 +423,9 @@ checkoutBtn.addEventListener('click', () => {
     return;
   }
 
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
+  //const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
+  const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
+
   let message = `✨ *Novo Pedido!* ✨\n\n`;
   let total = 0;
 
@@ -420,7 +440,8 @@ checkoutBtn.addEventListener('click', () => {
   });
 
   const deliveryFee = isDelivery ? 6.00 : 0;
-  const finalTotal = total + deliveryFee;
+  // const finalTotal = total + deliveryFee;
+  const finalTotal = total + deliveryFee + cardFee;
   const address = isDelivery ? addressInput.value.trim() : "Retirada no local";
   const observations = notesInput.value.trim() || "_-_";
 
@@ -428,11 +449,15 @@ checkoutBtn.addEventListener('click', () => {
   message += `📍 *Endereço:* ${address}\n`;
   message += `📦 Entrega: ${isDelivery ? `Sim (+R$ ${deliveryFee.toFixed(2)})` : "Não"}\n`;
   message += `📝 Observações: ${observations}\n\n`;
+  if (cardFee > 0) {
+    message += `💳 Taxa do cartão: R$ ${cardFee.toFixed(2)}\n`;
+  }
   message += `💰 *Total:* R$ ${finalTotal.toFixed(2)}\n\n`;
   message += `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰ _Aguardando tempo para retirada!_"}\n`;
 
   const encoded = encodeURIComponent(message);
   const phone = '5534988406995';
+  // const phone = '5534999749344';
   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
 
   cart = [];
