@@ -5,7 +5,7 @@
       "image": "assets/images/hotdog-frango.jpg",
       "title": "CACHORRO QUENTE DE FRANGO",
       "description": "Pão, salsicha, frango, azeitona, ketchup, maionese, creme de cheddar e batata palha.",
-      "price": 22.00,
+      "price": 24.00,
       "category": "HotDog",
       "available": true
     },
@@ -14,7 +14,7 @@
       "image": "assets/images/hotdog-tradicional.jpg",
       "title": "CACHORRO QUENTE TRADICIONAL",
       "description": "Pão, salsicha ao molho, ketchup, maionese e batata palha.",
-      "price": 15.00,
+      "price": 17.00,
       "category": "HotDog",
       "available": true
     },
@@ -23,7 +23,7 @@
       "image": "assets/images/hotdog-costela.jpg",
       "title": "CACHORRO QUENTE DE COSTELA",
       "description": "Pão, costela desfiada, ketchup, maionese, azeitona e batata palha.",
-      "price": 24.00,
+      "price": 26.00,
       "category": "HotDog",
       "available": true
     },
@@ -32,7 +32,7 @@
       "image": "assets/images/hotdog-paulista.jpg",
       "title": "CACHORRO QUENTE PAULISTA",
       "description": "Pão, salsicha ao molho, purê de batata, mussarela, ketchup, maionese e batata palha.",
-      "price": 17.00,
+      "price": 19.00,
       "category": "HotDog",
       "available": true
     },
@@ -41,7 +41,7 @@
       "image": "assets/images/hotdog-misto.jpg",
       "title": "CACHORRO QUENTE MISTO",
       "description": "Pão, frango, costela desfiada, salsicha, azeitona, ketchup, maionese, cheddar e batata palha.",
-      "price": 25.00,
+      "price": 27.00,
       "category": "HotDog",
       "available": true
     },
@@ -51,7 +51,7 @@
       "image": "assets/images/hotdog-carne.jpg",
       "title": "CACHORRO QUENTE DE CARNE MOÍDA",
       "description": "Pão, carne moída, purê de batata, salsicha, azeitona, ketchup, maionese e batata palha.",
-      "price": 24.00,
+      "price": 26.00,
       "category": "HotDog",
       "available": true
     },
@@ -61,7 +61,7 @@
       "image": "assets/images/hotdog-peixe.jpg",
       "title": "CACHORRO QUENTE DE PEIXE",
       "description": "Pão, filé de tilápia desfiado, mussarela, ketchup, maionese, azeitona e batata palha.",
-      "price": 22.00,
+      "price": 24.00,
       "category": "HotDog",
       "available": true
     }

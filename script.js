@@ -372,7 +372,7 @@ function renderCart() {
   // const subtotal = total + deliveryFee;
   // cartTotal.textContent = formatBRL(subtotal);
 
-  const deliveryFee = isDelivery ? 6.00 : 0;
+  const deliveryFee = isDelivery ? 7.00 : 0;
   const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
 
   const finalTotal = total + deliveryFee + cardFee;
@@ -439,7 +439,7 @@ checkoutBtn.addEventListener('click', () => {
     message += `   Subtotal: *R$ ${itemTotal.toFixed(2)}*\n\n`;
   });
 
-  const deliveryFee = isDelivery ? 6.00 : 0;
+  const deliveryFee = isDelivery ? 7.00 : 0;
   // const finalTotal = total + deliveryFee;
   const finalTotal = total + deliveryFee + cardFee;
   const address = isDelivery ? addressInput.value.trim() : "Retirada no local";
