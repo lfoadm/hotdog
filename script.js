@@ -490,8 +490,8 @@ checkoutBtn.addEventListener('click', () => {
   message += `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰ _Aguardando tempo para retirada!_"}\n`;
 
   const encoded = encodeURIComponent(message);
-  const phone = '5534988406995';
-  // const phone = '5534999749344';
+  // const phone = '5534988406995';
+  const phone = '5534999749344';
   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
 
   cart = [];
