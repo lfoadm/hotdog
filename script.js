@@ -563,7 +563,9 @@ checkoutBtn.addEventListener('click', () => {
   message += `--------------------------`;
 
   const encoded = encodeURIComponent(message);
-  const phone = '5534999749344';
+  // const phone = '5534999749344';
+  const phone = '5534988406995';
+
   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
 
   // Reset Geral
