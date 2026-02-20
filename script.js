@@ -435,66 +435,142 @@ function increaseItemCartById(id) {
   renderCart();
 }
 
+// // ======= Checkout =======
+// checkoutBtn.addEventListener('click', () => {
+//   if (!checkRestaurantOpen()) { showToast("O HOTDOG DA LEIDE está fechado no momento", "error"); return; }
+//   if (cart.length === 0) { showToast("Carrinho vazio!", "error"); return; }
+//   if (isDelivery && addressInput.value.trim() === '') { 
+//     showToast("Informe seu endereço completo!", "error");
+//     addressInput.classList.add('border-red-500');
+//     addressWarn.classList.remove('hidden');
+//     return;
+//   }
+
+//   // Validação de Mesa
+//   if (isTableOrder && tableInput.value.trim() === '') {
+//     showToast("Informe o número da mesa!", "error");
+//     tableInput.classList.add('border-red-500');
+//     tableWarn.classList.remove('hidden');
+//     return;
+//   }
+
+//   const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
+
+//   let headerMessage = isTableOrder 
+//     ? `✨ *PEDIDO LOCAL MESA ${tableInput.value.toUpperCase()}* ✨\n\n` 
+//     : `✨ *Novo Pedido!* ✨\n\n`;
+
+//   let message = headerMessage;
+//   let total = 0;
+
+//   cart.forEach(item => {
+//     const additionsSum = (item.additionals || []).reduce((acc, a) => acc + Number(a.price || 0), 0);
+//     const itemTotal = (Number(item.price) + additionsSum) * Number(item.quantity);
+//     total += itemTotal;
+//     message += `• ${item.quantity} unidade(s) ${item.name} - R$ ${Number(item.price).toFixed(2)}\n`;
+//     if (item.additionals?.length) message += `   ➕ Adicionais: ${item.additionals.map(a => `${a.name} (R$ ${Number(a.price).toFixed(2)})`).join(', ')}\n`;
+//     //if (item.description) message += `   📝 ${item.description}\n`;
+//     message += `   Subtotal: *R$ ${itemTotal.toFixed(2)}*\n\n`;
+//   });
+
+//   const deliveryFee = isDelivery ? 7.00 : 0;
+//   const finalTotal = total + deliveryFee + cardFee;
+//   const address = isDelivery ? addressInput.value.trim() : "Retirada no local";
+//   const observations = notesInput.value.trim() || "_-_";
+
+//   // Localização formatada
+//   let locationInfo = "";
+//   if(isDelivery) locationInfo = `📍 *Endereço:* ${addressInput.value.trim()}`;
+//   else if(isTableOrder) locationInfo = `🪑 *Local:* Consumo na Mesa ${tableInput.value}`;
+//   else locationInfo = `🏃 *Local:* Retirada no balcão`;
+
+//   message += `💲 *Pagamento:* ${paymentMethod}\n`;
+//   message += `📍 *Endereço:* ${address}\n`;
+//   message += `📦 Entrega: ${isDelivery ? `Sim (+R$ ${deliveryFee.toFixed(2)})` : "Não"}\n`;
+//   message += `📝 Observações: ${observations}\n\n`;
+//   if (cardFee > 0) {
+//     message += `💳 Taxa do cartão: R$ ${cardFee.toFixed(2)}\n`;
+//   }
+//   message += `💰 *Total:* R$ ${finalTotal.toFixed(2)}\n\n`;
+//   message += `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰ _Aguardando tempo para retirada!_"}\n`;
+
+//   const encoded = encodeURIComponent(message);
+//   // const phone = '5534988406995';
+//   const phone = '5534999749344';
+//   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+
+//   cart = [];
+//   renderCart();
+//   cartModal.style.display = 'none';
+// });
+
 // ======= Checkout =======
 checkoutBtn.addEventListener('click', () => {
   if (!checkRestaurantOpen()) { showToast("O HOTDOG DA LEIDE está fechado no momento", "error"); return; }
   if (cart.length === 0) { showToast("Carrinho vazio!", "error"); return; }
-  if (isDelivery && addressInput.value.trim() === '') { 
-    showToast("Informe seu endereço completo!", "error");
+  
+  // Validações de campos obrigatórios
+  if (isDelivery && !addressInput.value.trim()) {
+    showToast("Informe o endereço!", "error");
     addressInput.classList.add('border-red-500');
-    addressWarn.classList.remove('hidden');
     return;
   }
-
-  // Validação de Mesa
-  if (isTableOrder && tableInput.value.trim() === '') {
+  if (isTableOrder && !tableInput.value.trim()) {
     showToast("Informe o número da mesa!", "error");
     tableInput.classList.add('border-red-500');
-    tableWarn.classList.remove('hidden');
     return;
   }
 
   const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
-
-  let headerMessage = isTableOrder 
-    ? `✨ *PEDIDO LOCAL MESA ${tableInput.value.toUpperCase()}* ✨\n\n` 
-    : `✨ *Novo Pedido!* ✨\n\n`;
-
-  let message = headerMessage;
+  const deliveryFee = isDelivery ? 7.00 : 0;
   let total = 0;
 
+  // Cabeçalho Enxuto
+  let message = isTableOrder 
+    ? `✨ *PEDIDO LOCAL MESA ${tableInput.value.toUpperCase()}* ✨\n\n` 
+    : `✨ *NOVO PEDIDO (PARA FORA)* ✨\n\n`;
+
+  // Itens do Carrinho
   cart.forEach(item => {
-    const additionsSum = (item.additionals || []).reduce((acc, a) => acc + Number(a.price || 0), 0);
-    const itemTotal = (Number(item.price) + additionsSum) * Number(item.quantity);
+    const addsSum = (item.additionals || []).reduce((acc, a) => acc + Number(a.price), 0);
+    const itemTotal = (Number(item.price) + addsSum) * item.quantity;
     total += itemTotal;
-    message += `• ${item.quantity} unidade(s) ${item.name} - R$ ${Number(item.price).toFixed(2)}\n`;
-    if (item.additionals?.length) message += `   ➕ Adicionais: ${item.additionals.map(a => `${a.name} (R$ ${Number(a.price).toFixed(2)})`).join(', ')}\n`;
-    //if (item.description) message += `   📝 ${item.description}\n`;
-    message += `   Subtotal: *R$ ${itemTotal.toFixed(2)}*\n\n`;
+    
+    message += `*${item.quantity}x ${item.name}*\n`;
+    if (item.additionals?.length) message += `+ ${item.additionals.map(a => a.name).join(', ')}\n`;
+    message += `Subtotal: R$ ${itemTotal.toFixed(2)}\n\n`;
   });
 
-  const deliveryFee = isDelivery ? 7.00 : 0;
-  // const finalTotal = total + deliveryFee;
   const finalTotal = total + deliveryFee + cardFee;
-  const address = isDelivery ? addressInput.value.trim() : "Retirada no local";
-  const observations = notesInput.value.trim() || "_-_";
 
+  // Informações de Fechamento (Onde os dados da mesa/pagamento aparecem de forma limpa)
+  message += `--------------------------\n`;
   message += `💲 *Pagamento:* ${paymentMethod}\n`;
-  message += `📍 *Endereço:* ${address}\n`;
-  message += `📦 Entrega: ${isDelivery ? `Sim (+R$ ${deliveryFee.toFixed(2)})` : "Não"}\n`;
-  message += `📝 Observações: ${observations}\n\n`;
-  if (cardFee > 0) {
-    message += `💳 Taxa do cartão: R$ ${cardFee.toFixed(2)}\n`;
+
+  if (isTableOrder) {
+    message += `🪑 *Mesa:* ${tableInput.value}\n`;
+  } else if (isDelivery) {
+    message += `📍 *Entrega:* ${addressInput.value.trim()}\n`;
+    message += `🚚 *Taxa:* R$ ${deliveryFee.toFixed(2)}\n`;
+  } else {
+    message += `🏃 *Retirada no Balcão*\n`;
   }
-  message += `💰 *Total:* R$ ${finalTotal.toFixed(2)}\n\n`;
-  message += `✅ ${isDelivery ? "🚚 _Aguardando confirmação de entrega!_" : "⏰ _Aguardando tempo para retirada!_"}\n`;
+
+  if (cardFee > 0) message += `💳 *Taxa Cartão:* R$ ${cardFee.toFixed(2)}\n`;
+  if (notesInput.value.trim()) message += `📝 *Obs:* ${notesInput.value.trim()}\n`;
+  
+  message += `💰 *TOTAL: R$ ${finalTotal.toFixed(2)}*\n`;
+  message += `--------------------------`;
 
   const encoded = encodeURIComponent(message);
-  // const phone = '5534988406995';
   const phone = '5534999749344';
   window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
 
+  // Reset Geral
   cart = [];
+  tableInput.value = "";
+  addressInput.value = "";
+  notesInput.value = "";
   renderCart();
   cartModal.style.display = 'none';
 });
