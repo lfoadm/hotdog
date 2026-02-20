@@ -162,6 +162,18 @@
               <span>🏃 Retirada no balcão</span>
             </label>
           </div>
+          <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50">
+            <input id="table-service" type="radio" name="deliveryType" value="table" class="accent-green-600">
+            <span>📍 Mesa Presencial</span>
+          </label>
+        </div>
+
+        <!-- Mesa local -->
+        <div id="table-section" class="hidden mb-4">
+          <label for="table-number" class="block font-bold text-gray-700">🔢 Número da Mesa:</label>
+          <input type="number" id="table-number" placeholder="Ex: 05" maxlength="2" oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2);"
+            class="w-full border-2 p-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" />
+          <p id="table-warn" class="text-red-600 text-sm mt-1 hidden">⚠️ Informe o número da mesa!</p>
         </div>
 
         <!-- Endereço -->

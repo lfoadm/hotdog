@@ -27,13 +27,18 @@ const pickup = document.getElementById('pickup');
 const addressSection = document.getElementById('address-section');
 const pickupInfo = document.getElementById('pickup-info');
 
+const tableService = document.getElementById('table-service');
+const tableSection = document.getElementById('table-section');
+const tableInput = document.getElementById('table-number');
+const tableWarn = document.getElementById('table-warn');
+
 // ======= Estado =======
 let cart = [];
 let isDelivery = false;
 let paymentMethod = "📲 Pix"; // padrão
 const CARD_FEE = 1.00;
-
 let globalAdditionals = []; // carregará todos os adicionais do JSON
+let isTableOrder = false; // Estado do pedido local mesa presencial
 
 // ======= Helpers =======
 function showToast(text, type = "success") {
@@ -71,7 +76,7 @@ function formatBRL(value) {
 function checkRestaurantOpen() {
   const currentHour = new Date().getHours();
   const currentDay = new Date().getDay();
-  return (currentDay >= 0 && currentDay <= 6 && currentHour >= 18 && currentHour < 23);
+  return (currentDay >= 0 && currentDay <= 6 && currentHour >= 8 && currentHour < 23);
 }
 
 // ======= Atualiza badge de status =======
@@ -89,15 +94,33 @@ function checkRestaurantOpen() {
 // ======= Eventos Delivery / Pickup =======
 delivery.addEventListener('click', () => {
   isDelivery = true;
+  isTableOrder = false;
   addressSection.classList.remove('hidden');
   pickupInfo.classList.add('hidden');
+  tableSection.classList.add('hidden');
   renderCart();
 });
 pickup.addEventListener('click', () => {
   isDelivery = false;
+  isTableOrder = false;
   addressSection.classList.add('hidden');
   pickupInfo.classList.remove('hidden');
+  tableSection.classList.add('hidden');
   renderCart();
+});
+tableService.addEventListener('click', () => {
+  isDelivery = false;
+  isTableOrder = true;
+  addressSection.classList.add('hidden');
+  pickupInfo.classList.add('hidden');
+  tableSection.classList.remove('hidden');
+  renderCart();
+});
+tableInput.addEventListener('input', () => {
+  if (tableInput.value !== '') {
+    tableInput.classList.remove('border-red-500');
+    tableWarn.classList.add('hidden');
+  }
 });
 
 addressInput.addEventListener('input', (event) => {
@@ -423,10 +446,21 @@ checkoutBtn.addEventListener('click', () => {
     return;
   }
 
-  //const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || "Não informado";
+  // Validação de Mesa
+  if (isTableOrder && tableInput.value.trim() === '') {
+    showToast("Informe o número da mesa!", "error");
+    tableInput.classList.add('border-red-500');
+    tableWarn.classList.remove('hidden');
+    return;
+  }
+
   const cardFee = paymentMethod.includes("Cartão") ? CARD_FEE : 0;
 
-  let message = `✨ *Novo Pedido!* ✨\n\n`;
+  let headerMessage = isTableOrder 
+    ? `✨ *PEDIDO LOCAL MESA ${tableInput.value.toUpperCase()}* ✨\n\n` 
+    : `✨ *Novo Pedido!* ✨\n\n`;
+
+  let message = headerMessage;
   let total = 0;
 
   cart.forEach(item => {
